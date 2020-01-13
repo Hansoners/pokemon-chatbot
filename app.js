@@ -71,7 +71,7 @@ app.post('/pokedex', async (req, res) => {
 
             let fulfillmentText;
             if (specs == 'description') {
-                fulfillmentText = `${pokemon}:\n\n ${text.flavor_text}`;
+                fulfillmentText = `${text.flavor_text}`;
                 Object.assign(response_obj, {
                     fulfillmentText
                 });
