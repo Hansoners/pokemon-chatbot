@@ -92,7 +92,7 @@ app.post('/pokedex', async (req, res) => {
                   pokemon_evol.push(evolution_resp.data.chain.evolves_to[0].evolves_to[0].species.name);
                 }
         
-                let evolution_chain = pokemon_evol.join(' -> ');
+                let evolution_chain = pokemon_evol.join(' ➡️ ');
         
                 const order = pokemon_evol.indexOf(pokemon);
                 const next = pokemon_evol[order + 1];
