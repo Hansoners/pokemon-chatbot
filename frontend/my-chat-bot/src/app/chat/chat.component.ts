@@ -10,9 +10,6 @@ const httpOptions = {
   })
 };
 
-
-
-
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -35,7 +32,7 @@ export class ChatComponent implements OnInit {
      this.messages.push({
       type: 'text',
       text,
-      sender: 'PokeBot',
+      sender: 'PokéBot',
       avatar: '/assets/bot.jpg',
       date: new Date()
     });

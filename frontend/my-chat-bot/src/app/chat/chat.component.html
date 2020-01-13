@@ -1,4 +1,4 @@
-<nb-chat title="Conversation with a Bot">
+<nb-chat title="Poké Bot" size="large">
 
   <nb-chat-message *ngFor="let msg of messages"
                    [type]="msg.type"
@@ -17,5 +17,5 @@
 
 
   <nb-chat-form (send)="sendMessage($event)"></nb-chat-form>
-
+  
 </nb-chat>
