@@ -78,7 +78,7 @@ app.post('/pokedex', async (req, res) => {
             }
 
             if (specs == 'color') {
-                const pokemon_color = data.color;
+                const pokemon_color = data.color.name;
                 fulfillmentText = `${pokemon} is ${pokemon_color}.`;
                 Object.assign(response_obj, {
                     fulfillmentText
