@@ -22,7 +22,7 @@ app.listen(port, () => {
     console.log(`🌏 Server is running at http://localhost:${port}`)
 })
 
-const pokemon_endpoint = ['abilities', 'moves', 'photo'];
+const pokemon_endpoint = ['abilities', 'moves', 'photo', 'type'];
 const pokemon_species_endpoint = ['description', 'color', 'shape', 'habitat', 'evolutions'];
 
 app.post('/pokedex', async (req, res) => {
@@ -62,8 +62,8 @@ app.post('/pokedex', async (req, res) => {
             }
 
             if (specs == 'type') {
-                const types = data.types.map(item => item.type.name).join(', ');
-                fulfillmentText = `${pokemon} has the following type: ${types}`;
+                const val = data.types.map(item => item.type.name).join(', ');
+                fulfillmentText = `${pokemon} has the following type: ${val}`;
                 Object.assign(response_obj, { fulfillmentText });
             }
 
