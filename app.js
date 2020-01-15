@@ -60,6 +60,13 @@ app.post('/pokedex', async (req, res) => {
                     }
                 });
             }
+
+            if (specs == 'type') {
+                const types = data.types.map(item => item.type.name).join(', ');
+                fulfillmentText = `${pokemon} has the following type: ${types}`;
+                Object.assign(response_obj, { fulfillmentText });
+            }
+
         }
 
         if (index2 !== -1 || intent.displayName == 'evolutions') {
@@ -96,38 +103,38 @@ app.post('/pokedex', async (req, res) => {
             if (intent.displayName == 'evolutions') {
                 const evolution_resp = await axios_instance.get(`/evolution-chain/${evolution_chain_id}`);
                 const evolution_req = parameters.evolutions;
-               
+
                 let pokemon_evol = [evolution_resp.data.chain.species.name];
                 fulfillmentText = `${pokemon} does not have an evolution`;
-        
+
                 if (evolution_resp.data.chain.evolves_to.length) {
-                  pokemon_evol.push(evolution_resp.data.chain.evolves_to[0].species.name);
+                    pokemon_evol.push(evolution_resp.data.chain.evolves_to[0].species.name);
                 }
-        
+
                 if (evolution_resp.data.chain.evolves_to[0].evolves_to.length) {
-                  pokemon_evol.push(evolution_resp.data.chain.evolves_to[0].evolves_to[0].species.name);
+                    pokemon_evol.push(evolution_resp.data.chain.evolves_to[0].evolves_to[0].species.name);
                 }
-        
+
                 let evolution_chain = pokemon_evol.join(' ➡️ ');
-        
+
                 const order = pokemon_evol.indexOf(pokemon);
                 const next = pokemon_evol[order + 1];
                 const prev = pokemon_evol[order - 1];
-                
+
                 const evolution_text = {
-                  'evolution_chain': `${pokemon}'s evolution chain is: ${evolution_chain}`,
-                  'first_evolution': `${pokemon_evol[0]} is the first evolution`,
-                  'last_evolution': `${pokemon_evol[pokemon_evol.length - 1]} is the last evolution`,
-                  'next': `${pokemon} evolves to ${next}`,
-                  'prev': `${pokemon} evolves from ${prev}`
+                    'evolution_chain': `${pokemon}'s evolution chain is: ${evolution_chain}`,
+                    'first_evolution': `${pokemon_evol[0]} is the first evolution`,
+                    'last_evolution': `${pokemon_evol[pokemon_evol.length - 1]} is the last evolution`,
+                    'next': `${pokemon} evolves to ${next}`,
+                    'prev': `${pokemon} evolves from ${prev}`
                 };
-        
+
                 if (evolution_text[evolution_req]) {
-                  fulfillmentText = evolution_text[evolution_req];
+                    fulfillmentText = evolution_text[evolution_req];
                 }
-        
+
                 Object.assign(response_obj, {
-                  fulfillmentText
+                    fulfillmentText
                 });
 
             }
