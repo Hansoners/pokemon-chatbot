@@ -23,7 +23,7 @@ app.listen(port, () => {
 })
 
 const pokemon_endpoint = ['abilities', 'moves', 'photo'];
-const pokemon_species_endpoint = ['description', 'evolutions'];
+const pokemon_species_endpoint = ['description', 'color', 'shape', 'habitat', 'evolutions'];
 
 app.post('/pokedex', async (req, res) => {
 
@@ -72,6 +72,22 @@ app.post('/pokedex', async (req, res) => {
             let fulfillmentText;
             if (specs == 'description') {
                 fulfillmentText = `${text.flavor_text}`;
+                Object.assign(response_obj, {
+                    fulfillmentText
+                });
+            }
+
+            if (specs == 'color') {
+                const pokemon_color = data.color;
+                fulfillmentText = `${pokemon} is ${pokemon_color}.`;
+                Object.assign(response_obj, {
+                    fulfillmentText
+                });
+            }
+
+            if (specs == 'habitat') {
+                const area = data.habitat.name;
+                fulfillmentText = `${pokemon} lives in the following area: ${area}.`;
                 Object.assign(response_obj, {
                     fulfillmentText
                 });

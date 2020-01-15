@@ -43,7 +43,7 @@ export class ChatComponent implements OnInit {
       type: 'file',
       text: "Here you go!",
       files: filesarr,
-      sender: 'PokeBot',
+      sender: 'PokéBot',
       avatar: '/assets/bot.jpg',
       date: new Date()
     });
