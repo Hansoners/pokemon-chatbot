@@ -139,11 +139,7 @@ app.post('/pokedex', async (req, res) => {
 
             }
         }
-
-        if (fulfillmentText === '') {
-            fulfillmentText = "Sorry, I do not have the answer to that.";
-            Object.assign(response_obj, { fulfillmentText });
-        }
+        
         return res.json(response_obj);
 
     }
