@@ -36,7 +36,6 @@ app.post('/pokedex', async (req, res) => {
         let response_obj = {};
 
         const index = pokemon_endpoint.indexOf(specs);
-        console.log(index);
         const index2 = pokemon_species_endpoint.indexOf(specs);
 
         if (index !== -1) {
