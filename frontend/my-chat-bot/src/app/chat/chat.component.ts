@@ -26,6 +26,17 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.addBotMessage('Hi Human 🤖. I am a Pokémon bot. How can I help you?');
+
+    this.http.post<any>(
+      API_URL,
+      {
+        lang: 'en',
+      query: 'activate API',
+      sessionId: '12345',
+      timezone: 'America/New_York'
+        }, httpOptions
+    );
+
   }
 
   addBotMessage(text) {
@@ -84,11 +95,13 @@ export class ChatComponent implements OnInit {
         });
         this.addBotImageMessage(text, files);
       } else {
+        if (res.result.fulfillment.speech) {
       this.addBotMessage(res.result.fulfillment.speech);
+        } else {
+          this.addBotMessage('Sorry, please wait a couple of seconds and try again 🥺🥺🥺');
+        }
       }
       this.loading = false;
     });
-
   }
-
 }
