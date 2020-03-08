@@ -35,7 +35,10 @@ export class ChatComponent implements OnInit {
       sessionId: '12345',
       timezone: 'America/New_York'
         }, httpOptions
-    );
+    ).subscribe(res => {
+      console.log(res);
+      this.loading = false;
+    });
 
   }
 
@@ -52,7 +55,7 @@ export class ChatComponent implements OnInit {
   addBotImageMessage(text, filesarr) {
     this.messages.push({
       type: 'file',
-      text: "Here you go!",
+      text: 'Here you go!',
       files: filesarr,
       sender: 'PokéBot',
       avatar: '/assets/bot.jpg',
@@ -70,7 +73,6 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage(event) {
-    console.log(event);
     const text = event.message;
     this.addUserMessage(text);
     this.loading = true;
