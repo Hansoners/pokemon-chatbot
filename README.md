@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
 
-[Link to project](https://pokechat-b0ae3.firebaseapp.com/)
+[Link to project](https://hansonchen.ca/poke-chat)
 
 ## Development server
 
